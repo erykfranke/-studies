@@ -1,6 +1,6 @@
 function createMaze(mazeWidth, mazeHeight) {
     
-	//  Parametry ----------------------
+    //  Parametry ----------------------
     var posX = 1;
     var posY = 1;
     var maze = [];
@@ -70,7 +70,7 @@ function createMaze(mazeWidth, mazeHeight) {
         }
         // ---------------------------------------------------------
 
-        if (direction.length != 0){  // Ruch -----------------------------------
+        if (direction.length != 0) {  // Ruch -----------------------------------
             switch(moves[moves.length - 1]){
                 case 'U':
                     maze[posY][posX] = 1;
@@ -97,7 +97,7 @@ function createMaze(mazeWidth, mazeHeight) {
                     break;
             }
         } 
-        else{ // Powrot --------------------------------------------
+        else { // Powrot --------------------------------------------
             switch(moves[moves.length - 1]){
                 case 'U':
                     maze[posY][posX] = 2;
@@ -132,7 +132,6 @@ function createMaze(mazeWidth, mazeHeight) {
                     break;
             }
         }
-
     }
     return maze;
 }
