@@ -1,0 +1,44 @@
+﻿@model Czytamy.pl.Models.Publisher
+
+@{
+    ViewBag.Title = "Details";
+}
+
+    <div id="details_box">
+        <img src=@Model.LogoPath id="book_cover" height="350" width="245" />
+
+        <div id="book_details" style="width: 745px">
+            <div id="book_title">
+                @Model.Name
+            </div>
+
+            <div id="numberBooks">
+                <i class="demo-icon icon-book" style="color: #FF6700"></i>
+                @Model.Books.Count() książek
+            </div>
+            <hr />
+
+            <ul style="font-size: 19px">
+                <li>Strona www: <a href=@Model.Web_site>@Model.Web_site</a></li>
+                <li class="clear"></li>
+            </ul>
+        </div>
+        <div class="clear"></div>
+
+        <hr style="margin: 20px 0" />
+
+        <div style="font-size: 19px">
+            @Model.Description
+        </div>
+        @Html.Partial("DetailsAdminButtons", Model.ID)
+    </div>
+
+<div class="details_list_title">
+    Wszyskie książki
+</div>
+
+<hr class="main" style="margin-bottom: 30px" />
+
+<div id="details_book_list">
+    @Html.Partial("BookList", Model.Books)
+</div>

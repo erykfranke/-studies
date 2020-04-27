@@ -1,0 +1,167 @@
+﻿@model  Czytamy.pl.Models.AdvenceFilterViewModel
+
+@{
+    string getURL()
+    {
+        string result = "?";
+        if (!Request.Params["sort"].IsEmpty())
+        {
+            result += "&sort=" + Request.Params["sort"];
+        }
+        if (!Request.Params["category"].IsEmpty())
+        {
+            result += "&category=" + Request.Params["category"];
+        }
+        if (!Request.Params["tagsID"].IsEmpty())
+        {
+            result += "&tagsID=" + Request.Params["tagsID"];
+        }
+        if (!Request.Params["datePublishedFrom"].IsEmpty())
+        {
+            result += "&datePublishedFrom=" + Request.Params["datePublishedFrom"];
+        }
+        if (!Request.Params["datePublishedTo"].IsEmpty())
+        {
+            result += "&datePublishedTo=" + Request.Params["datePublishedTo"];
+        }
+        if (!Request.Params["authorsID"].IsEmpty())
+        {
+            result += "&authorsID=" + Request.Params["authorsID"];
+        }
+        if (!Request.Params["publishersID"].IsEmpty())
+        {
+            result += "&publishersID=" + Request.Params["publishersID"];
+        }
+        if (!Request.Params["page"].IsEmpty())
+        {
+            result += "&page=" + Request.Params["page"];
+        }
+        return result;
+    }
+
+    bool checkParamater(string p_name, string v_name)
+    {
+        if (Request.Params[p_name] != null)
+        {
+            return Request.Params[p_name].Contains(v_name);
+        }
+        return false;
+    }
+
+    string setURLFilters(string p_name, string v_name)
+    {
+        string result = getURL();
+
+        if (result.Contains(p_name))
+        {
+            if (!result.Contains(p_name + "=" + v_name))
+            {
+                string currentParameter = Request.Params[p_name];
+                result = result.Replace("=" + currentParameter, "=" + v_name);
+            }
+        }
+        else
+        {
+            result += "&" + p_name + "=" + v_name;
+        }
+        return result;
+    }
+}
+
+<div class="pages">
+
+    @if (!Request.Params["page"].Equals("1"))
+    {
+        <a href=@setURLFilters("page", (Int32.Parse(Request.Params["page"])-1).ToString())>
+            <i class="demo-icon icon-left-open"></i>
+        </a>
+    }
+    else
+    {
+        <i class="demo-icon icon-left-open" style="color: lightgray"></i>
+    }
+
+    @if (ViewBag.numberOfPages < 10)
+    {
+        for (int i = 1; i <= ViewBag.numberOfPages; i++)
+        {
+            <a href=@setURLFilters("page", i.ToString())
+               @if (checkParamater("page", i.ToString())) { <text> style="color: #FF6700" </text> } class="page">
+                @i.ToString()
+            </a>
+        }
+    }
+
+    else if (Int32.Parse(Request.Params["page"]) < 4)
+    {
+        for (int i = 1; i < 4; i++)
+        {
+            <a href=@setURLFilters("page", i.ToString())
+               @if (checkParamater("page", i.ToString())) { <text> style="color: #FF6700" </text> } class="page">
+                @i.ToString()
+            </a>
+        }
+        <span class="page" style="color:lightgray">
+            ...
+        </span>
+        <a href=@setURLFilters("page", String.Format("{0}", ViewBag.numberOfPages))
+           @if (checkParamater("page", String.Format("{0}", ViewBag.numberOfPages))) { <text> style="color: #FF6700" </text> } class="page">
+            @ViewBag.numberOfPages
+        </a>
+    }
+
+    else if (Int32.Parse(Request.Params["page"]) >= ViewBag.numberOfPages - 2)
+    {
+        <a href=@setURLFilters("page", "1") )
+           @if (checkParamater("page", "1")) { <text> style="color: #FF6700" </text> } class="page">
+            1
+        </a>
+        <span class="page" style="color:lightgray">
+            ...
+        </span>
+        for (int i = ViewBag.numberOfPages - 2; i <= ViewBag.numberOfPages; i++)
+        {
+            <a href=@setURLFilters("page", i.ToString())
+               @if (checkParamater("page", i.ToString())) { <text> style="color: #FF6700" </text> } class="page">
+                @i.ToString()
+            </a>
+        }
+    }
+
+    else
+    {
+        <a href=@setURLFilters("page", "1") )
+           @if (checkParamater("page", "1")) { <text> style="color: #FF6700" </text> } class="page">
+            1
+        </a>
+        <span class="page" style="color:lightgray">
+            ...
+        </span>
+        for (int i = Int32.Parse(Request.Params["page"]) - 1; i <= Int32.Parse(Request.Params["page"]) + 1; i++)
+        {
+            <a href=@setURLFilters("page", i.ToString())
+               @if (checkParamater("page", i.ToString())) { <text> style="color: #FF6700" </text> } class="page">
+                @i.ToString()
+            </a>
+        }
+        <span class="page" style="color:lightgray">
+            ...
+        </span>
+        <a href=@setURLFilters("page", String.Format("{0}", ViewBag.numberOfPages))
+           @if (checkParamater("page", String.Format("{0}", ViewBag.numberOfPages))) { <text> style="color: #FF6700" </text> } class="page">
+            @ViewBag.numberOfPages
+        </a>
+    }
+
+    @if (!Request.Params["page"].Equals(String.Format("{0}", ViewBag.numberOfPages)))
+    {
+        <a href=@setURLFilters("page", (Int32.Parse(Request.Params["page"])+1).ToString())>
+            <i class="demo-icon icon-right-open"></i>
+        </a>
+    }
+    else
+    {
+        <i class="demo-icon icon-right-open" style="color: lightgray"></i>
+    }
+
+</div>

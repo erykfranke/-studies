@@ -1,0 +1,45 @@
+﻿@model Czytamy.pl.Models.BookDetailsViewModel
+
+@if (Request.IsAuthenticated)
+{
+    using (Html.BeginForm("Create", "Opinions", FormMethod.Post, null))
+    {
+        @Html.HiddenFor(model => model.User.Id, new { @value = Model.User.Id })
+        @Html.HiddenFor(model => model.Book.ID, new { @value = Model.Book.ID })
+
+        <div id="add_opinion_box">
+            <h4>Dodaj Opinię</h4>
+            <div style="text-align:center">""
+
+                <div id="add_opinion_image_box">
+                    <img src=@Model.User.PhotoPath width="80" height="80" style="border-radius: 50%; margin-top: 20px" />
+                </div>
+
+                <div id="add_opinion_comment_box">
+                    @Html.TextAreaFor(model => model.UserOpinion.Comment,
+                        new { placeholder = "Wpisz treść opini o książce", @class = "add_opinion_comment_textBox" })
+                </div>
+            </div>
+            <div class="clear"></div>
+            <div id="triangle-topleft"></div>
+
+            <ul id="add_opinion_rating_box">
+                <li style="margin-top: 3px">TWOJA OCENA</li>
+                <li style="margin-left: 10px; margin-top: 3px">
+                    <input type="range" name="sliderInput" class="add_opinion_ratingSlider"
+                           oninput="rating.value=this.value" min="0" max="10">
+                </li>
+                <li style="margin-left: 10px">
+                    @Html.EditorFor(model => model.UserOpinion.Rating,
+                        new { htmlAttributes = new { id = "rating", placeholder = 5, @readonly = "readonly" } })
+                    <i class="demo-icon icon-star" style="color: #C92523; font-size: 17px"></i>
+                </li>
+            </ul>
+
+            <input type="submit" value="Dodaj komentarz" id="add_opinion_subnit" />
+
+            <div class="clear"></div>
+        </div>
+        <hr class="main" />
+    }
+}

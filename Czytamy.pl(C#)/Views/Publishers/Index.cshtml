@@ -1,0 +1,20 @@
+﻿@model IEnumerable<Czytamy.pl.Models.Publisher>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+@Html.Partial("BasicFilter", "Publishers")
+<div id="list">
+    <div class="list_beam">
+        WYDAWNICTWA
+        @Html.Partial("IndexAdminButtons", "Publisher")
+        <hr class="main" />
+    </div>
+    @foreach (var item in Model)
+    {
+        <div id="list_element">
+            @Html.ActionLink(item.Name, "Details", new { id = item.ID })
+        </div>
+    }
+</div>

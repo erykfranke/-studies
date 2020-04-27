@@ -1,0 +1,147 @@
+﻿#form_box {
+    width: 540px;
+    text-align: center;
+    background-color: #eaeaea;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 30px
+}
+
+.form_imput {
+    font-size: 15px;
+    width: 95%;
+    height: 26px;
+    background-color: #eaeaea;
+    border-top: none;
+    border-right: none;
+    border-left: none;
+    border-bottom: gray 2px solid;
+    resize: none;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+    .form_imput:hover {
+        border-bottom: #FF6700 2px solid;
+    }
+
+    .form_imput:focus {
+        border-bottom: #FF6700 2px solid;
+        outline: none
+    }
+
+.form_imput_text-area {
+    font-size: 15px;
+    width: 95%;
+    height: 100px;
+    background-color: #eaeaea;
+    border-top: none;
+    border-right: none;
+    border-left: none;
+    border-bottom: gray 2px solid;
+    resize: none;
+    padding: 10px;
+}
+
+    .form_imput_text-area:hover {
+        border-bottom: #FF6700 2px solid;
+    }
+
+    .form_imput_text-area:focus {
+        border-bottom: #FF6700 2px solid;
+        outline: none
+    }
+
+.form_select {
+    border-left: solid #eaeaea 1px;
+    border-top: solid #eaeaea 1px;
+    border-right: solid #eaeaea 1px;
+    border-bottom: solid gray 2px;
+    font-size: 15px;
+    width: 100%;
+    height: 31px;
+    padding: 3px;
+    padding-left: 10px;
+    background-color: #eaeaea;
+    -webkit-appearance: none;
+    cursor: pointer;
+}
+
+    .form_select:hover {
+        border-bottom: solid #FF6700 2px;
+    }
+
+    .form_select:focus {
+        outline: none;
+        border-bottom: solid #FF6700 2px;
+    }
+
+.form_verse {
+    text-align: left;
+    font-size: 13px;
+    margin: 12px 0;
+}
+
+#submit {
+    font-size: 20px;
+    border: #FF6700 solid 2px;
+    padding: 10px 20px;
+    background-color: #eaeaea;
+    cursor: pointer;
+}
+
+    #submit:hover {
+        background-color: #FF6700;
+        color: white;
+    }
+
+.form_error {
+    font-size: 14px;
+    color: red;
+    padding: 5px;
+}
+
+.form_requared {
+    font-size: 13px;
+    color: red;
+}
+
+    .link a:link {
+        color: #597194;
+        text-decoration: none;
+    }
+
+    .link a:visited {
+        color: #597194;
+    }
+
+    .link a:hover {
+        color: #FF6700;
+    }
+
+.cancel {
+    font-size: 20px;
+    border: #FF6700 solid 2px;
+    padding: 12px 20px;
+    background-color: #eaeaea;
+    margin-left: 20px;
+}
+
+    .cancel:link{
+        color: black;
+    }
+
+    .cancel:visited {
+        color: black;
+    }
+
+    .cancel:hover {
+        background-color: #FF6700;
+        color: white;
+    }
+
+.summary_error {
+    border: solid 1px red;
+    background-color: #de9898;
+    list-style: none;
+}

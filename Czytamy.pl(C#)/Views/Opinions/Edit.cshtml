@@ -1,0 +1,52 @@
+﻿@model Czytamy.pl.Models.BookDetailsViewModel
+
+@if (Request.IsAuthenticated)
+{
+
+
+    <div id="add_opinion_box">
+        @using (Html.BeginForm("Edit", "Opinions", FormMethod.Post, null))
+        {
+            @Html.HiddenFor(model => model.User.Id, new { @value = Model.User.Id })
+            @Html.HiddenFor(model => model.Book.ID, new { @value = Model.Book.ID })
+            @Html.HiddenFor(model => model.UserOpinion.ID, new { @value = Model.UserOpinion.ID })
+            <h4>Twoja opinia</h4>
+            <div style="text-align:center">
+
+                <div id="add_opinion_image_box">
+                    <img src=@Model.User.PhotoPath width="80" height="80" style="border-radius: 50%; margin-top: 20px" />
+                </div>
+
+                <div id="add_opinion_comment_box">
+                    @Html.TextAreaFor(model => model.UserOpinion.Comment,
+                         new { placeholder = "Wpisz treść opini o książce", @class = "add_opinion_comment_textBox", style = "border: solid 1px #FF6700" })
+                </div>
+            </div>
+            <div class="clear"></div>
+            <div id="triangle-topleft"></div>
+
+            <ul id="add_opinion_rating_box">
+                <li style="margin-top: 3px">TWOJA OCENA</li>
+                <li style="margin-left: 10px; margin-top: 3px">
+                    <input type="range" name="sliderInput" class="add_opinion_ratingSlider"
+                           oninput="rating.value=this.value" min="0" max="10" value=@Model.UserOpinion.Rating>
+                </li>
+                <li style="margin-left: 10px">
+                    @Html.EditorFor(model => model.UserOpinion.Rating,
+                         new { htmlAttributes = new { id = "rating", @readonly = "readonly" } })
+                    <i class="demo-icon icon-star" style="color: #C92523; font-size: 17px"></i>
+                </li>
+            </ul>
+
+            <input type="submit" value="Edytuj komentarz" id="add_opinion_subnit" />
+        }
+
+        @using (Html.BeginForm("Delete", "Opinions", new { id = Model.UserOpinion.ID, bookID = Model.Book.ID}, FormMethod.Post, null))
+        {
+            <input type="submit" value="Usuń komentarz" id="add_opinion_subnit" style="margin-right: 20px" />
+        }
+        <div class="clear"></div>
+    </div>
+        <hr class="main" />
+    
+}

@@ -1,0 +1,65 @@
+﻿@model Czytamy.pl.Models.RegisterViewModel
+@{
+    ViewBag.Title = "Register";
+}
+
+    <div id="form_box">
+        <h1>Dołącz do nas</h1>
+        <h2>Jesteś już jednym z nas? <span class="link">@Html.ActionLink("Zaloguj się", "Login")</span></h2>
+        <div style="padding-top: 20px; font-size: 17px">
+            lub
+        </div>
+        @using (Html.BeginForm("Register", "Account", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+        {
+            @Html.AntiForgeryToken()
+            @Html.ValidationSummary(true, "", new { @class = "summary_error" })
+
+            <div class="form_verse">
+                @Html.LabelFor(m => m.Nick)<span class="form_requared">*</span>
+                <div>
+                    @Html.TextBoxFor(m => m.Nick, new { placeholder = "Wpisz swój Nick", @class = "form_imput" })
+                </div>
+                <div class="form_error">
+                    @Html.ValidationMessageFor(m => m.Nick)
+                </div>
+            </div>
+
+            <div class="form_verse">
+                @Html.LabelFor(m => m.Email)<span class="form_requared">*</span>
+                <div>
+                    @Html.TextBoxFor(m => m.Email, new { placeholder = "Wpisz e-mail", @class = "form_imput" })
+                </div>
+                <div class="form_error">
+                    @Html.ValidationMessageFor(m => m.Email)
+                </div>
+            </div>
+
+            <div class="form_verse">
+                @Html.LabelFor(m => m.Password)<span class="form_requared">*</span>
+                <div>
+                    @Html.PasswordFor(m => m.Password, new { placeholder = "Wpisz hasło", @class = "form_imput" })
+                </div>
+                <div class="form_error">
+                    @Html.ValidationMessageFor(m => m.Password)
+                </div>
+            </div>
+
+            <div class="form_verse">
+                @Html.LabelFor(m => m.ConfirmPassword)<span class="form_requared">*</span>
+                <div>
+                    @Html.PasswordFor(m => m.ConfirmPassword, new { placeholder = "Powtórz hasło", @class = "form_imput" })
+                </div>
+                <div class="form_error">
+                    @Html.ValidationMessageFor(m => m.ConfirmPassword)
+                </div>
+            </div>
+
+            <div style="margin-top: 40px">
+                <input type="submit" id="submit" value="Zarejestruj się" />
+            </div>
+        }
+    </div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

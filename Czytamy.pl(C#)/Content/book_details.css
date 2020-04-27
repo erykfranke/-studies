@@ -1,0 +1,321 @@
+﻿#book_box {
+    background-color: #eaeaea;
+    padding: 20px
+}
+
+#book_cover {
+    border: white 15px solid;
+    float: left;
+}
+
+#book_details {
+    width: 638px;
+    float: left;
+    margin-left: 20px;
+    font-size: 17px;
+}
+
+    #book_details ul {
+        list-style-type: none;
+        padding: unset;
+        margin: unset;
+        width: 395px;
+        float: left
+    }
+
+    #book_details li {
+        margin-top: 10px;
+        float: left;
+    }
+
+.name {
+    width: 160px;
+}
+
+.value {
+    width: 200px;
+}
+
+.tags {
+    float: left;
+    padding: 5px;
+    border: solid #597194 thin;
+    margin-left: auto;
+    margin-right: auto;
+    color: #597194;
+    font-weight: 400;
+    margin-right: 5px;
+}
+
+    /*tags:link {
+            color: #597194;
+        }*/
+
+    /*.tags:hover {
+            background-color: #597194;
+            color: white !important;
+        }*/
+
+    .tags:hover, .tags:hover a, .tags:hover input[type=submit] {
+        background-color: #597194;
+        color: white !important;
+    }
+
+.addTag {
+    float: left;
+    padding: 5px;
+    color: #FF6700;
+    border: solid #FF6700 thin;
+    margin-left: auto;
+    margin-right: auto;
+    font-weight: 400;
+}
+
+    .addTag:link {
+        color: #FF6700;
+    }
+
+    .addTag:hover {
+        background-color: #FF6700;
+        color: white;
+    }
+
+#book_title {
+    background-color: #555555;
+    color: white;
+    font-size: 50px;
+    padding: 20px;
+    margin-top: 20px;
+    width: 100%;
+    font-weight: bold;
+    margin-left: -20px
+}
+
+#book_author {
+    padding: 20px 0;
+    font-size: 26px;
+    font-weight: bold;
+}
+
+#book_category {
+    font-size: 23px;
+    padding-top: 5px;
+    padding-bottom: 20px;
+}
+
+#book_rating_box {
+    padding: 20px 10px;
+    width: 190px;
+    float: right;
+    background-color: white;
+    font-size: 18px;
+    text-align: center;
+}
+
+#book_rating {
+    width: 120px;
+    margin: 16px auto;
+}
+
+#book_rating_star {
+    float: left;
+    color: #C92523;
+    margin-top: 18px;
+}
+
+#book_rating_num {
+    float: left;
+    font-size: 37px;
+    font-weight: bold;
+    color: #C92523;
+}
+
+#book_rating_10 {
+    float: left;
+    font-size: 20px;
+    margin-top: 15px;
+    margin-left: 5px;
+}
+
+#book_description {
+    padding: 20px 0;
+    font-size: 18px;
+}
+
+/*
+    OPINIONS
+*/
+#add_opinion_box {
+    width: 900px;
+    margin: 20px auto;
+}
+
+#add_opinion_image_box {
+    float: left;
+    width: 150px;
+    height: 120px;
+    background-color: #E2E6EC;
+}
+
+#add_opinion_comment_box {
+    float: left;
+    width: 750px;
+    height: 120px;
+    background-color: #eaeaea;
+}
+
+.add_opinion_comment_textBox {
+    margin-top: 15px;
+    font-size: 15px;
+    width: 90%;
+    height: 70%;
+    border: none;
+    white-space: initial;
+    overflow: hidden;
+    resize: none;
+}
+
+    .add_opinion_comment_textBox:focus {
+        outline: none
+    }
+
+#triangle-topleft {
+    width: 0;
+    height: 0;
+    border-top: 32px solid #E2E6EC;
+    border-right: 32px solid transparent;
+    float: left;
+}
+
+#add_opinion_rating_box {
+    margin-top: 50px;
+    margin-left: 70px;
+    list-style-type: none;
+}
+
+    #add_opinion_rating_box li {
+        float: left;
+    }
+
+.add_opinion_ratingSlider {
+    -webkit-appearance: none;
+    width: 100%;
+    height: 10px;
+    background: lightgray;
+    outline: none;
+}
+
+    .add_opinion_ratingSlider::-webkit-slider-thumb {
+        -webkit-appearance: none;
+        width: 12px;
+        height: 12px;
+        background: #C92523;
+        cursor: pointer;
+    }
+
+#rating {
+    color: #C92523;
+    font-size: 22px;
+    border: none;
+    width: 24px
+}
+
+    #rating:hover {
+        cursor: default;
+    }
+
+#add_opinion_subnit {
+    font-size: 17px;
+    border: #FF6700 solid 2px;
+    padding: 10px 20px;
+    background-color: white;
+    float: right;
+    margin-right: -20px;
+}
+
+    #add_opinion_subnit:hover {
+        background-color: #FF6700;
+        color: white;
+        cursor: pointer;
+    }
+
+/*
+    OPINIONS LIST
+*/
+
+#opinion_list {
+    width: 965px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.opinion_user_photo {
+    float: left;
+    width: 65px;
+    margin-left: 0px;
+    margin-right: 20px;
+    border-radius: 50%
+}
+
+.opinion_content {
+    font-size: 17px;
+    float: left;
+    width: 795px;
+    margin-right: 10px;
+    background-color: #E2E6EC;
+    padding: 20px;
+}
+
+#triangle-topright {
+    border-top: 40px solid #E2E6EC;
+    border-left: 30px solid transparent;
+    float: left;
+    margin-top: 25px;
+}
+
+#opinion_rating {
+    float: right;
+    width: 100px;
+    list-style-type: none;
+    margin: unset;
+    padding: unset;
+    margin-bottom: 10px
+}
+
+    #opinion_rating li {
+        float: right;
+    }
+
+#opinion_commenet {
+    padding-top: 20px;
+    border-top: 1px darkgray solid
+}
+
+.opinions_submint {
+    font-size: 17px;
+    border: #FF6700 solid 2px;
+    padding: 10px 17px;
+    background-color: white;
+    font-weight: normal;
+}
+
+    .opinions_submint:hover {
+        background-color: #FF6700;
+        color: white;
+    }
+
+
+
+
+#delete_box {
+    width: 800px;
+    background-color: #eaeaea;
+    padding: 20px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#delete_title {
+    text-align: center;
+    margin: 10px auto;
+}

@@ -1,0 +1,362 @@
+﻿@model  Czytamy.pl.Models.AdvenceFilterViewModel
+
+@{ ViewBag.Title = "Index";
+
+    string getURL()
+    {
+        string result = "?";
+        if (!Request.Params["sort"].IsEmpty())
+        {
+            result += "&sort=" + Request.Params["sort"];
+        }
+        if (!Request.Params["category"].IsEmpty())
+        {
+            result += "&category=" + Request.Params["category"];
+        }
+        if (!Request.Params["tagsID"].IsEmpty())
+        {
+            result += "&tagsID=" + Request.Params["tagsID"];
+        }
+        if (!Request.Params["datePublishedFrom"].IsEmpty())
+        {
+            result += "&datePublishedFrom=" + Request.Params["datePublishedFrom"];
+        }
+        if (!Request.Params["datePublishedTo"].IsEmpty())
+        {
+            result += "&datePublishedTo=" + Request.Params["datePublishedTo"];
+        }
+        if (!Request.Params["authorsID"].IsEmpty())
+        {
+            result += "&authorsID=" + Request.Params["authorsID"];
+        }
+        if (!Request.Params["publishersID"].IsEmpty())
+        {
+            result += "&publishersID=" + Request.Params["publishersID"];
+        }
+        if (!Request.Params["page"].IsEmpty())
+        {
+            result += "&page=" + Request.Params["page"];
+        }
+        return result;
+    }
+
+    bool checkParamater(string p_name, string v_name)
+    {
+        if (Request.Params[p_name] != null)
+        {
+            return Request.Params[p_name].Contains(v_name);
+        }
+        return false;
+    }
+
+    string setURLFilters(string p_name, string v_name)
+    {
+        string result = getURL();
+
+        if (result.Contains(p_name))
+        {
+            if (result.Contains(p_name + "=" + v_name))
+            {
+                result = result.Replace(p_name + "=" + v_name, "");
+            }
+            else
+            {
+                string currentParameter = Request.Params[p_name];
+                result = result.Replace("=" + currentParameter, "=" + v_name);
+            }
+        }
+        else
+        {
+            result += "&" + p_name + "=" + v_name;
+        }
+        return result;
+    }
+
+    string setURLFiltersForMulitpleValues(string p_name, string v_name)
+    {
+        string result = getURL();
+
+        string parameters = Request.Params[p_name];
+        if (!parameters.IsEmpty())
+        {
+            result = result.Replace("&"+p_name + "=" + parameters, "");
+            if (parameters.Length == 1 && parameters.Equals(v_name))
+            {
+                return result;
+            }
+            else if (parameters.Contains(v_name))
+            {
+                if (parameters[0].ToString().Equals(v_name))
+                {
+                    parameters = parameters.Replace(v_name+",", "");
+                }
+                else
+                {
+                    parameters = parameters.Replace(","+v_name, "");
+                }
+                result += "&" + p_name + "=" + parameters;
+            }
+            else
+            {
+                result += "&" + p_name + "=" + parameters + "," + v_name;
+            }
+        }
+        else
+        {
+            result += "&" + p_name + "=" + v_name;
+        }
+        return result;
+    }
+}
+
+    <div id="filter">
+        <div class="list_beam">
+            FILTRY
+            <hr class="main" />
+        </div>
+
+        <div class="filter_element">
+            <div style="float: left; font-size: 18px; padding: 5px 10px">
+                Sortuj:
+            </div>
+            <select class="filter_select" onchange="location = this.value">
+                <option value=@setURLFilters("sort","t_asc")
+                        @if (checkParamater("sort", "t_asc")) { <text> selected</text> }>
+                    Alfabetycznie A-Z
+                </option>
+
+                <option value=@setURLFilters("sort","t_desc")
+                        @if (checkParamater("sort", "t_desc")) { <text> selected</text> }>
+                    Alfabetycznie Z-A
+                </option>
+
+                <option value=@setURLFilters("sort","dp_asc")
+                        @if (checkParamater("sort", "dp_asc")) { <text> selected</text> }>
+                    Data wydania rosnąco
+                </option>
+
+                <option value=@setURLFilters("sort","dp_desc")
+                        @if (checkParamater("sort", "dp_desc")) { <text> selected</text> }>
+                    Data wydania malejąco
+                </option>
+
+                <option value=@setURLFilters("sort","noo_asc")
+                        @if (checkParamater("sort", "noo_asc")) { <text> selected</text> }>
+                    Liczba opinii rosnąco
+                </option>
+
+                <option value=@setURLFilters("sort","noo_desc")
+                        @if (checkParamater("sort", "noo_desc")) { <text> selected</text> }>
+                    Liczba opinii malejąco
+                </option>
+
+                @*<option value=@setURLFilters("sort","r_asc")
+                        @if (checkParamater("sort", "r_asc")) { <text> selected</text> }>
+                    Ocena malejąco
+                </option>
+
+                <option value=@setURLFilters("sort","r_desc")
+                        @if (checkParamater("sort", "r_desc")) { <text> selected</text> }>
+                    Ocena rosnąco
+                </option>*@
+            </select>
+            <div class="clear"></div>
+            <hr class="filter" />
+        </div>
+
+        <div class="filter_element">
+            KSIĄŻKI Z KATEGORII:
+            <ul>
+                <li>
+                    <i class="demo-icon icon-right-open" id="filter_icon"></i>
+                    <a href=@setURLFilters("category","literatura_piękna")
+                       @if (checkParamater("category", "literatura_piękna")) { <text> style="color: #FF6700" </text> }>
+                        Literatura piękna
+                    </a>
+                </li>
+                <li>
+                    <i class="demo-icon icon-right-open" id="filter_icon"></i>
+                    <a href=@setURLFilters("category","powieść_historyczna")
+                       @if (checkParamater("category", "powieść_historyczna")) { <text> style="color: #FF6700" </text> }>
+                        Powieść historyczna
+                    </a>
+                </li>
+                <li>
+                    <i class="demo-icon icon-right-open" id="filter_icon"></i>
+                    <a href=@setURLFilters("category","kryminal,_sensacja,_thiller")
+                       @if (checkParamater("category", "kryminal,_sensacja,_thiller")) { <text> style="color:#FF6700" </text> }>
+                        Kryminał, sensacja, thiller
+                    </a>
+                </li>
+                <li>
+                    <i class="demo-icon icon-right-open" id="filter_icon"></i>
+                    <a href=@setURLFilters("category","literatura_obyczajowa,_romans")
+                       @if (checkParamater("category", "literatura_obyczajowa,_romans")) { <text> style="color:#FF6700" </text> }>
+                        Literatura obyczajowa, romans
+                    </a>
+                </li>
+                <li>
+                    <i class="demo-icon icon-right-open" id="filter_icon"></i>
+                    <a href=@setURLFilters("category","literatura_faktu,_publicystyka")
+                       @if (checkParamater("category", "literatura_faktu,_publicystyka")) { <text> style="color:#FF6700" </text> }>
+                        Literatura faktu, publicystyka
+                    </a>
+                </li>
+                <li>
+                    <i class="demo-icon icon-right-open" id="filter_icon"></i>
+                    <a href=@setURLFilters("category","autobiografie,_biografia,_wspomnienia")
+                       @if (checkParamater("category", "autobiografie,_biografia,_wspomnienia")) { <text> style="color:#FF6700" </text> }>
+                        Autobiografia, biografia, wspomnienia
+                    </a>
+                </li>
+                <li>
+                    <i class="demo-icon icon-right-open" id="filter_icon"></i>
+                    <a href=@setURLFilters("category","literatura_fantastyczna")
+                       @if (checkParamater("category", "literatura_fantastyczna")) { <text> style="color: #FF6700" </text> }>
+                        Literatura fantastyczna
+                    </a>
+                </li>
+                <li>
+                    <i class="demo-icon icon-right-open" id="filter_icon"></i>
+                    <a href=@setURLFilters("category","science_fiction")
+                       @if (checkParamater("category", "science_fiction")) { <text> style="color: #FF6700" </text> }>
+                        Science fiction
+                    </a>
+                </li>
+                <li>
+                    <i class="demo-icon icon-right-open" id="filter_icon"></i>
+                    <a href=@setURLFilters("category","horror")
+                       @if (checkParamater("category", "horror")) { <text> style="color: #FF6700" </text> }>
+                        Horror
+                    </a>
+                </li>
+                <li>
+                    <i class="demo-icon icon-right-open" id="filter_icon"></i>
+                    <a href=@setURLFilters("category","literatura_młodzieżowa")
+                       @if (checkParamater("category", "literatura_młodzieżowa")) { <text> style="color: #FF6700" </text> }>
+                        Literatura młodzieżowa
+                    </a>
+                </li>
+                <li>
+                    <i class="demo-icon icon-right-open" id="filter_icon"></i>
+                    <a href=@setURLFilters("category","literatura_dziecięca")
+                       @if (checkParamater("category", "literatura_dziecięca")) { <text> style="color: #FF6700" </text> }>
+                        Literatura dziecięca
+                    </a>
+                </li>
+            </ul>
+        </div>
+        <hr class="filter" />
+
+        <div class="filter_element">
+            TAGI:
+            <div class="filter_content_list">
+                @foreach (var tag in Model.Tags)
+                {
+                    <div class="filter_check_box"
+                         @if (checkParamater("tagsID", tag.ID.ToString())) { <text> style="background-color:#FF6700" </text> }>
+                    </div>
+                    <div style="float:left; margin-left: 10px">
+                        <a href=@setURLFiltersForMulitpleValues("tagsID", tag.ID.ToString())
+                           @if (checkParamater("tagsID", tag.ID.ToString())) { <text> style="color:#FF6700" </text> }>
+                            @tag.Name
+                        </a>
+                    </div>
+                    <div class="clear"></div>
+                }
+            </div>
+        </div>
+        <hr class="filter" />
+
+        <div class="filter_element">
+            <div style="margin-bottom: 14px">DATA WYDANIA:</div>
+            <span style="float: left; margin-top: 3px; font-size: 17px; margin-left: 30px; margin-right: 5px">
+                od
+            </span>
+            <span class="date_box">
+                <span style="float: left">
+                    <i class="demo-icon icon-calendar" style="color: #FF6700"></i>
+                </span>
+                <span style="float: left">
+                    <select class="filter_select" style="width: auto; border-bottom: white; padding: 2px; font-size: 16px" onchange="location = this.value">
+                        @for (int i = 1423; i <= 2020; i++)
+                        {
+                            <option value=@setURLFilters("datePublishedFrom", i.ToString())
+                                    @if (checkParamater("datePublishedFrom", i.ToString())) { <text> selected</text>}>
+                                @i
+                            </option>
+                        }
+                    </select>
+                </span>
+            </span>
+
+            <span style="float: left; margin-top: 3px; font-size: 17px; margin-left: 25px; margin-right: 5px">
+                do
+            </span>
+            <span class="date_box">
+                <span style="float: left">
+                    <i class="demo-icon icon-calendar" style="color: #FF6700"></i>
+                </span>
+                <span style="float: left">
+                    <select class="filter_select" style="width: auto; border-bottom: white; padding: 2px; font-size: 16px" onchange="location = this.value">
+                        @for (int i = 1423; i <= 2020; i++)
+                        {
+                            <option value=@setURLFilters("datePublishedTo", i.ToString())
+                                    @if (checkParamater("datePublishedTo", i.ToString())) 
+                                    {
+                                        <text> selected </text>
+                                    }
+                                    else if (Request.Params["datePublishedTo"] == null && i == 2020) 
+                                    {
+                                        <text> selected </text>
+                                    }>
+                                @i
+                            </option>
+                        }
+                    </select>
+                </span>
+            </span>
+            <div class="clear"></div>
+        </div>
+        <hr class="filter" />
+
+        <div class="filter_element">
+            AUTORZY:
+            <div class="filter_content_list">
+                @foreach (var item in Model.Authors)
+                {
+                    <div class="filter_check_box"
+                         @if (checkParamater("authorsID", item.ID.ToString())) { <text> style="background-color:#FF6700" </text> }>
+                    </div>
+                    <div style="float:left; margin-left: 10px">
+                        <a href=@setURLFiltersForMulitpleValues("authorsID", item.ID.ToString())
+                           @if (checkParamater("authorsID", item.ID.ToString())) { <text> style="color:#FF6700" </text> }>
+                            @item.Name @item.Surname
+                        </a>
+                    </div>
+                    <div class="clear"></div>
+                }
+            </div>
+        </div>
+        <hr class="filter" />
+
+        <div class="filter_element">
+            WYDAWNICTWA:
+            <div class="filter_content_list">
+                @foreach (var item in Model.Publishers)
+                {
+                    <div class="filter_check_box"
+                         @if (checkParamater("publishersID", item.ID.ToString())) { <text> style="background-color:#FF6700" </text> }>
+                    </div>
+                    <div style="float:left; margin-left: 10px">
+                        <a href=@setURLFiltersForMulitpleValues("publishersID", item.ID.ToString())
+                           @if (checkParamater("publishersID", item.ID.ToString())) { <text> style="color:#FF6700" </text> }>
+                            @item.Name
+                        </a>
+                    </div>
+                    <div class="clear"></div>
+                }
+            </div>
+        </div>
+        <hr class="filter" />
+    </div>

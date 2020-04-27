@@ -1,0 +1,179 @@
+﻿@model string
+@{
+    ViewBag.Title = "Index";
+
+    bool checkParamater(string p_name, string v_name)
+    {
+        if (Request.Params[p_name] != null)
+        {
+            return Request.Params[p_name].Equals(v_name);
+        }
+        return false;
+    }
+
+    string setURLFilters(string p_name, string v_name)
+    {
+        string result = "?";
+        if (Request.Params["_sort"] != null)
+        {
+            result += "&_sort=" + Request.Params["_sort"];
+        }
+        if (Request.Params["_category"] != null)
+        {
+            result += "&_category=" + Request.Params["_category"];
+        }
+        if (Request.Params["_start_letter"] != null)
+        {
+            result += "&_start_letter=" + Request.Params["_start_letter"];
+        }
+
+        if (result.Contains(p_name))
+        {
+            if (result.Contains(p_name + "=" + v_name))
+            {
+                result = result.Replace(p_name + "=" + v_name, "");
+            }
+            else
+            {
+                string currentParameter = Request.Params[p_name];
+                result = result.Replace("=" + currentParameter, "=" + v_name);
+            }
+        }
+        else
+        {
+            result += "&" + p_name + "=" + v_name;
+        }
+        return result;
+    }
+}
+
+<div id="filter">
+    <div class="list_beam">
+        FILTRY
+        <hr class="main" />
+    </div>
+
+    <div class="filter_element">
+        <div style="float: left; font-size: 18px; padding: 5px 10px">
+            Sortuj:
+        </div>
+        <select class="filter_select" onchange="location = this.value">
+            <option value=@setURLFilters("_sort","s_asc")
+                    @if (checkParamater("_sort", "s_asc")) { <text> selected</text> }>
+                Alfabetycznie A-Z
+            </option>
+            <option value=@setURLFilters("_sort","s_desc")
+                    @if (checkParamater("_sort", "s_desc")) { <text> selected</text> }>
+                Alfabetycznie Z-A
+            </option>
+            <option value=@setURLFilters("_sort","b_asc")
+                    @if (checkParamater("_sort", "b_asc")) { <text> selected</text> }>
+                Liczba książek najmniejsza
+            </option>
+            <option value=@setURLFilters("_sort","b_desc")
+                    @if (checkParamater("_sort", "b_desc")) { <text> selected</text> }>
+                Liczba książek największa
+            </option>
+        </select>
+        <div class="clear"></div>
+        <hr class="filter" />
+    </div>
+
+
+    <div class="filter_element">
+        KSIĄŻKI Z KATEGORII:
+        <ul>
+            <li>
+                <i class="demo-icon icon-right-open" id="filter_icon"></i>
+                <a href=@setURLFilters("category","literatura_piękna")
+                   @if (checkParamater("category", "literatura_piękna")) { <text> style="color: #FF6700" </text> }>
+                    Literatura piękna
+                </a>
+            </li>
+            <li>
+                <i class="demo-icon icon-right-open" id="filter_icon"></i>
+                <a href=@setURLFilters("category","powieść_historyczna")
+                   @if (checkParamater("category", "powieść_historyczna")) { <text> style="color: #FF6700" </text> }>
+                    Powieść historyczna
+                </a>
+            </li>
+            <li>
+                <i class="demo-icon icon-right-open" id="filter_icon"></i>
+                <a href=@setURLFilters("category","kryminal,_sensacja,_thiller")
+                   @if (checkParamater("category", "kryminal,_sensacja,_thiller")) { <text> style="color:#FF6700" </text> }>
+                    Kryminał, sensacja, thiller
+                </a>
+            </li>
+            <li>
+                <i class="demo-icon icon-right-open" id="filter_icon"></i>
+                <a href=@setURLFilters("category","literatura_obyczajowa,_romans")
+                   @if (checkParamater("category", "literatura_obyczajowa,_romans")) { <text> style="color:#FF6700" </text> }>
+                    Literatura obyczajowa, romans
+                </a>
+            </li>
+            <li>
+                <i class="demo-icon icon-right-open" id="filter_icon"></i>
+                <a href=@setURLFilters("category","literatura_faktu,_publicystyka")
+                   @if (checkParamater("category", "literatura_faktu,_publicystyka")) { <text> style="color:#FF6700" </text> }>
+                    Literatura faktu, publicystyka
+                </a>
+            </li>
+            <li>
+                <i class="demo-icon icon-right-open" id="filter_icon"></i>
+                <a href=@setURLFilters("category","autobiografie,_biografia,_wspomnienia")
+                   @if (checkParamater("category", "autobiografie,_biografia,_wspomnienia")) { <text> style="color:#FF6700" </text> }>
+                    Autobiografia, biografia, wspomnienia
+                </a>
+            </li>
+            <li>
+                <i class="demo-icon icon-right-open" id="filter_icon"></i>
+                <a href=@setURLFilters("category","literatura_fantastyczna")
+                   @if (checkParamater("category", "literatura_fantastyczna")) { <text> style="color: #FF6700" </text> }>
+                    Literatura fantastyczna
+                </a>
+            </li>
+            <li>
+                <i class="demo-icon icon-right-open" id="filter_icon"></i>
+                <a href=@setURLFilters("category","science_fiction")
+                   @if (checkParamater("category", "science_fiction")) { <text> style="color: #FF6700" </text> }>
+                    Science fiction
+                </a>
+            </li>
+            <li>
+                <i class="demo-icon icon-right-open" id="filter_icon"></i>
+                <a href=@setURLFilters("category","horror")
+                   @if (checkParamater("category", "horror")) { <text> style="color: #FF6700" </text> }>
+                    Horror
+                </a>
+            </li>
+            <li>
+                <i class="demo-icon icon-right-open" id="filter_icon"></i>
+                <a href=@setURLFilters("category","literatura_młodzieżowa")
+                   @if (checkParamater("category", "literatura_młodzieżowa")) { <text> style="color: #FF6700" </text> }>
+                    Literatura młodzieżowa
+                </a>
+            </li>
+            <li>
+                <i class="demo-icon icon-right-open" id="filter_icon"></i>
+                <a href=@setURLFilters("category","literatura_dziecięca")
+                   @if (checkParamater("category", "literatura_dziecięca")) { <text> style="color: #FF6700" </text> }>
+                    Literatura dziecięca
+                </a>
+            </li>
+        </ul>
+    </div>
+    <hr class="filter" />
+
+    <div class="filter_element">
+        <div>ALFABETYCZNIE</div>
+        @for (char i = (char)65; i <= 90; i++)
+        {
+            <div class="letter">
+                <a href=@setURLFilters("_start_letter",i.ToString())
+                   @if (checkParamater("_start_letter", i.ToString())) { <text> style="background-color: #555555" </text> }>
+                    @i
+                </a>
+            </div>
+        }
+    </div>
+</div>

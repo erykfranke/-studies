@@ -1,0 +1,31 @@
+﻿@model Czytamy.pl.Models.Tag
+
+@{
+    ViewBag.Title = "Create";
+}
+
+<div id="form_box">
+    <h1>Dodaj nowego taga do @ViewBag.BookTitle</h1>
+    @using (Html.BeginForm())
+    {
+
+        <div class="form_verse">
+            @Html.LabelFor(model => model.Name)<span class="form_requared">*</span>
+            <div>
+                @Html.EditorFor(model => model.Name,
+                    new { htmlAttributes = new { placeholder = "Wpisz nazwe taga", @class = "form_imput" } })
+            </div>
+            <div class="form_error">
+                @Html.ValidationMessageFor(model => model.Name)
+            </div>
+        </div>
+
+        <div style="margin-top: 40px">
+            <input type="submit" value="Create" id="submit" />
+        </div>
+    }
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

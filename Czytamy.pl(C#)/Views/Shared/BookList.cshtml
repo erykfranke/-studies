@@ -1,0 +1,54 @@
+﻿@model IEnumerable<Czytamy.pl.Models.Book>
+
+@foreach (var item in Model)
+{
+    <div style="float:left">
+        <img src=@item.CoverPath width="176" height="250" />
+    </div>
+    <div style="float:left">
+        <ul>
+            <li>@Html.ActionLink(item.Title, "Details", "Books", new { id = item.ID }, null)</li>
+
+            <li>
+                @Html.ActionLink(item.Author.Name + " " + item.Author.Surname,
+                    "Details", "Authors", new { id = item.Author.ID }, null)
+            </li>
+
+            <li style="float: left">Średnia Ocen</li>
+
+            <li class="rating" style="margin-left:20px">
+                <i class="demo-icon icon-star"></i>
+            </li>
+
+            <li class="rating" style="margin-left: 4px; margin-top: 18px; font-size: 24px">
+                @if (item.Opinions.Count() == 0)
+                {
+                    <text>0.0</text>
+                }
+                else
+                {
+                    string rate = item.Opinions.Average(x => x.Rating).ToString();
+                    if (rate.Length <= 3)
+                    {
+                        <text>@rate</text>
+                    }
+                    else
+                    {
+                        <text>@rate.Substring(0, 3)</text>
+                    }
+                }
+            </li>
+
+            <li style="float:left; margin-left: 4px">/10</li>
+            <li id="book_list_numberOfOpinions">
+                @item.Opinions.Count()
+            </li>
+            <li class="clear"></li>
+        </ul>
+    </div>
+    <div class="clear"></div>
+    if (item != Model.Last())
+    {
+       <hr style="border: black solid 0.5px" />
+    }
+}

@@ -1,0 +1,169 @@
+﻿@model Czytamy.pl.Models.BookDetailsViewModel
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<div id="book_box">
+    <img src=@Model.Book.CoverPath id="book_cover" height="500" width="352" />
+    <div id="book_details">
+        <div id="book_title">
+            @Html.DisplayFor(model => model.Book.Title)
+        </div>
+        <div id="book_author">
+            @Html.ActionLink(Model.Book.Author.Name + " " + Model.Book.Author.Surname, "Details", "Authors", new { id = Model.Book.Author.ID }, null)
+        </div>
+        <div id="book_category">
+            @Html.ActionLink(Model.Book.Category, "Index", "Books", new { category = Model.Book.Category }, null)
+        </div>
+
+        <hr />
+
+        <ul>
+            @if (Model.Book.Oryginal_title != null)
+            {
+                <li class="name">Oryginalny tytuł:</li>
+                <li class="value">@Html.DisplayFor(model => model.Book.Oryginal_title)</li>
+                <li class="clear"></li>
+            }
+
+            <li class="name">Data wydania:</li>
+            <li class="value">@Html.DisplayFor(model => model.Book.Date_published)</li>
+            <li class="clear"></li>
+
+            @if (Model.Book.Polish_date_published != null)
+            {
+                <li class="name">Data wyd. pol.:</li>
+                <li class="value">@Html.DisplayFor(model => model.Book.Polish_date_published)</li>
+                <li class="clear"></li>
+            }
+
+            <li class="name">Liczba stron:</li>
+            <li class="value">@Html.DisplayFor(model => model.Book.Number_of_pages)</li>
+            <li class="clear"></li>
+
+            <li class="name">Język:</li>
+            <li class="value">@Html.DisplayFor(model => model.Book.Language)</li>
+            <li class="clear"></li>
+
+            <li class="name">ISBN:</li>
+            <li class="value">@Html.DisplayFor(model => model.Book.ISBN)</li>
+            <li class="clear"></li>
+
+            <li class="name">Wydawnictwo:</li>
+            <li class="value">
+                @Html.ActionLink(Model.Book.Publisher.Name, "Details", "Publishers",
+           new { id = Model.Book.Publisher.ID }, null)
+            </li>
+            <li class="clear"></li>
+
+            <li class="name">Kategoria:</li>
+            <li class="value">@Model.Book.Category</li>
+            <li class="clear"></li>
+
+            <li class="name">Tagi:</li>
+            @foreach (var tag in Model.Book.Tags)
+            {
+                <li class="tags">
+                    @Html.ActionLink(tag.Name, "Index", "Books", new { tagsID = tag.ID.ToString(), page = "1"}, null)
+                    @if (User.IsInRole("Admin"))
+                    {
+                        using (Html.BeginForm("Delete", "Tags", new { id = tag.ID.ToString(), bookID = Model.Book.ID }, FormMethod.Post, new { @style = "display: inline-block" }))
+                        {
+                            <input type="submit" value="x" id="delete_tag_buttom">
+                        }
+                    }
+                </li>
+            }
+            @if (User.IsInRole("Admin"))
+            {
+                <li>@Html.ActionLink("dodaj tag", "Create", "Tags", new { id=Model.Book.ID}, new { @class = "addTag" })</li>
+            }
+        </ul>
+
+        <!-- DO POPRAWY -->
+        <div id="book_rating_box">
+            Średnia Ocena:
+            <div id="book_rating">
+                <i class="demo-icon icon-star" id="book_rating_star"></i>
+                <span id="book_rating_num">
+                    @if (Model.Book.Opinions.Count() == 0)
+                    {
+                        <text>0.0</text>
+                    }
+                    else
+                    {
+                        string rate = Model.Book.Opinions.Average(x => x.Rating).ToString();
+                        if (rate.Length <= 3)
+                        {
+                            <text>@rate</text>
+                        }
+                        else
+                        {
+                            <text>@rate.Substring(0,3)</text>
+                        }
+                    }
+                </span>
+                <span id="book_rating_10"> / 10</span>
+                <div class="clear"></div>
+            </div>
+            z @Model.Book.Opinions.Count() opinii
+        </div>
+    </div>
+    <div class="clear"></div>
+    <div id="book_description">
+        @Model.Book.Description
+    </div>
+    @Html.Partial("DetailsAdminButtons", Model.Book.ID)
+</div>
+
+<!------------------------------------   OPINIONS   ------------------------------------>
+
+<h2>Opinie [@Model.Book.Opinions.Count()]</h2>
+<hr class="main">
+@if (Model.UserOpinion == null)
+{
+    @Html.Partial("~/Views/Opinions/Create.cshtml", Model)
+}
+else
+{
+    @Html.Partial("~/Views/Opinions/Edit.cshtml", Model)
+}
+
+<div id="opinion_list">
+    @foreach (var item in Model.Book.Opinions)
+    {
+        if (item.Equals(Model.UserOpinion))
+        {
+            continue;
+        }
+        <img src=@item.User.PhotoPath width="65" height="65" class="opinion_user_photo" />
+        <div id="triangle-topright"></div>
+        <div class="opinion_content">
+            <div style="float: left; padding-right: 20px; border-right: 1px darkgray solid">
+                @Html.ActionLink(item.User.UserName, "Details", "ApplicationUsers", new { nick = item.User.UserName }, null)
+            </div>
+            <div style="float: left; padding-left: 20px">
+                @item.Date_published
+            </div>
+
+            <ul id="opinion_rating">
+                <li style="margin-left: 4px; margin-top: 4px; font-size: 18px">
+                    /10
+                </li>
+                <li style="color: #C92523; font-size: 22px">
+                    @item.Rating
+                </li>
+                <li style="color: #C92523; margin-right: 4px;  margin-top: 9px; font-size: 14px">
+                    <i class="demo-icon icon-star"></i>
+                </li>
+            </ul>
+            <div class="clear"></div>
+
+            <div id="opinion_commenet">
+                @item.Comment
+            </div>
+        </div>
+        <div class="clear" style="padding-top: 50px"></div>
+    }
+</div>

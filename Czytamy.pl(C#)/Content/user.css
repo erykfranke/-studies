@@ -1,0 +1,59 @@
+﻿#UserBox {
+    background-color: #eaeaea;
+    padding: 10px 30px;
+    width: 800px;
+    margin: 0 auto;
+}
+
+#user_left_row {
+    float: left;
+    width: 110px;
+    padding: 10px;
+    text-align: center;
+    font-size: 16px;
+}
+
+#user_right_row {
+    float: left;
+    width: 635px;
+    padding-left: 30px;
+    padding-top: 20px;
+    font-size: 17px;
+}
+
+.info {
+    font-size: 16px;
+    margin-top: 6px;
+}
+
+#user_opinion_count {
+    margin: 0 10px;
+    color: #FF6700;
+    font-size: 22px;
+}
+
+.user_edit {
+    text-decoration: none;
+    font-size: 18px;
+    border: #FF6700 solid 2px;
+    padding: 6px 16px;
+    background-color: #eaeaea;
+    float:right;
+}
+
+    .user_edit:link{
+        color: black;
+    }
+
+    .user_edit:visited{
+        color:black;
+    }
+
+    .user_edit:hover {
+        background-color: #FF6700;
+        color: white;
+    }
+
+#user_description{
+    min-height: 120px;
+}

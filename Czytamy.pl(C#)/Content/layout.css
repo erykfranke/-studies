@@ -1,0 +1,146 @@
+﻿body {
+    font-family: 'Lato', sans-serif;
+    margin-left: 0;
+    margin-right: 0;
+    margin-bottom: 0;
+}
+
+#header_logo {
+    float: left;
+    width: 500px;
+    color: #FF6700;
+    font-size: 60px;
+    padding-left: 20px;
+    padding-right: 20px;
+    padding-bottom: 10px;
+    margin-left: 20px;
+}
+
+    #header_logo a:link {
+        color: #FF6700;
+        text-decoration: none;
+    }
+
+   #header_logo a:visited {
+        color: #FF6700;
+    }
+
+    #header_logo a:hover {
+        color: #FF6700;
+    }
+
+#header_user{
+    float: right;
+}
+
+#UserPanel {
+    background-color: inherit;
+    padding: 6px 25px;
+    color: #555555;
+    text-align: right;
+    font-size: 17px;
+}
+
+    #UserPanel a:link {
+        color: #555555;
+        text-decoration: none;
+    }
+
+    #UserPanel a:visited {
+        color: #555555;
+    }
+
+    #UserPanel a:hover {
+        color: #ffc69f;
+    }
+
+#H_search {
+    padding: 8px;
+    font-size: 12px;
+    width: 350px;
+    height: 35px;
+    border-left: #FF6700;
+    border-top: none;
+    border-right: none;
+    border-bottom-color: #555555;
+    border-bottom-width: thin;
+}
+
+.test a:hover, .test input[type=submit]:hover {
+    background-color: #597194 !important;
+    color: white;
+}
+
+#nav_bar {
+    width: 100%;
+    background-color: #eaeaea;
+}
+
+    #nav_bar ul {
+        list-style-type: none;
+        width: 1100px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    #nav_bar li {
+        float: left;
+        padding: 12px;
+        font-size: 20px;
+    }
+
+        #nav_bar li a:link {
+            color: #555555;
+            text-decoration: none;
+        }
+
+        #nav_bar li a:visited {
+            color: #555555;
+        }
+
+        #nav_bar li a:hover {
+            color: #FF6700;
+        }
+
+#head {
+    width: 1100px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#container{
+    width: 1100px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 50px;
+    margin-bottom: 50px;
+    position: relative;
+}
+
+footer {
+    left: 0;
+    bottom: 0;
+    background-color: slategray;
+    padding: 10px;
+    border-top: solid 4px #eaeaea;
+    clear: both;
+    width: 100%;
+    position: fixed;
+}
+
+.clear{
+    clear: both
+}
+
+a:link {
+    color: #597194;
+    text-decoration: none;
+}
+
+a:visited {
+    color: #597194
+}
+
+a:hover {
+    color: #FF6700
+}

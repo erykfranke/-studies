@@ -1,0 +1,177 @@
+﻿@model Czytamy.pl.Models.CreateEdit_BookViewModel
+
+@{
+    ViewBag.Title = "Create";
+}
+
+    <div id="form_box">
+        <h1>Dodaj nowego książkie</h1>
+        @using (Html.BeginForm("Create", "Books", FormMethod.Post, new { enctype = "multipart/form-data" }))
+        {
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+            <div class="form_verse">
+                @Html.LabelFor(model => model.Book.Title)<span class="form_requared">*</span>
+                <div>
+                    @Html.EditorFor(model => model.Book.Title,
+                        new { htmlAttributes = new { placeholder = "Wpisz tytuł książki", @class = "form_imput" } })
+                </div>
+                <div class="form_error">
+                    @Html.ValidationMessageFor(model => model.Book.Title)
+                </div>
+            </div>
+
+            <div class="form_verse">
+                @Html.LabelFor(model => model.Book.Oryginal_title)
+                <div>
+                    @Html.EditorFor(model => model.Book.Oryginal_title,
+                        new { htmlAttributes = new { placeholder = "Wpisz oryginalny tytuł książki", @class = "form_imput" } })
+                </div>
+                <div class="form_error">
+                    @Html.ValidationMessageFor(model => model.Book.Oryginal_title)
+                </div>
+            </div>
+
+            <div class="form_verse">
+                @Html.LabelFor(model => model.AuthorName)<span class="form_requared">*</span>
+                <div>
+                    @Html.EditorFor(model => model.AuthorName,
+                        new { htmlAttributes = new { placeholder = "Wpisz imię autora", @class = "form_imput" } })
+                </div>
+                <div class="form_error">
+                    @Html.ValidationMessageFor(model => model.AuthorName)
+                </div>
+            </div>
+
+            <div class="form_verse">
+                @Html.LabelFor(model => model.AuthorSurname)<span class="form_requared">*</span>
+                <div>
+                    @Html.EditorFor(model => model.AuthorSurname,
+                        new { htmlAttributes = new { placeholder = "Wpisz nazwisko autora", @class = "form_imput" } })
+                </div>
+                <div class="form_error">
+                    @Html.ValidationMessageFor(model => model.AuthorSurname)
+                </div>
+            </div>
+
+            <div class="form_verse">
+                @Html.LabelFor(model => model.Book.Category)<span class="form_requared">*</span>
+                <div>
+                    @Html.DropDownListFor(model => model.Book.Category,
+                        new SelectList(new List<string>{
+                            "literatura piękna",
+                            "powieść historyczna",
+                            "kryminal, sensacja, thiller",
+                            "literatura obyczajowa, romans",
+                            "literatura faktu, publicystyka",
+                            "autobiografie, biografia, wspomnienia",
+                            "literatura fantastyczna",
+                            "science fiction",
+                            "horror",
+                            "literatura młodzieżowa",
+                            "literatura dziecięca"
+                        }), new { @class = "form_select" }
+                    )
+                </div>
+                <div class="form_error">
+                    @Html.ValidationMessageFor(model => model.Book.Category)
+                </div>
+            </div>
+
+            <div class="form_verse">
+                @Html.LabelFor(model => model.Book.Date_published)<span class="form_requared">*</span>
+                <div>
+                    @Html.EditorFor(model => model.Book.Date_published,
+                        new { htmlAttributes = new { @class = "form_imput" } })
+                </div>
+                <div class="form_error">
+                    @Html.ValidationMessageFor(model => model.Book.Date_published)
+                </div>
+            </div>
+
+            <div class="form_verse">
+                @Html.LabelFor(model => model.Book.Polish_date_published)
+                <div>
+                    @Html.EditorFor(model => model.Book.Polish_date_published,
+                        new { htmlAttributes = new { @class = "form_imput" } })
+                </div>
+                <div class="form_error">
+                    @Html.ValidationMessageFor(model => model.Book.Polish_date_published)
+                </div>
+            </div>
+
+            <div class="form_verse">
+                @Html.LabelFor(model => model.Book.Number_of_pages)<span class="form_requared">*</span>
+                <div>
+                    @Html.EditorFor(model => model.Book.Number_of_pages,
+                        new { htmlAttributes = new { placeholder = "Wpisz liczbę stron", @class = "form_imput" } })
+                </div>
+                <div class="form_error">
+                    @Html.ValidationMessageFor(model => model.Book.Number_of_pages)
+                </div>
+            </div>
+
+            <div class="form_verse">
+                @Html.LabelFor(model => model.Book.Language)<span class="form_requared">*</span>
+                <div>
+                    @Html.EditorFor(model => model.Book.Language,
+                        new { htmlAttributes = new { placeholder = "Wpisz język książki", @class = "form_imput" } })
+                </div>
+                <div class="form_error">
+                    @Html.ValidationMessageFor(model => model.Book.Language)
+                </div>
+            </div>
+
+            <div class="form_verse">
+                @Html.LabelFor(model => model.Book.ISBN)<span class="form_requared">*</span>
+                <div>
+                    @Html.EditorFor(model => model.Book.ISBN,
+                        new { htmlAttributes = new { placeholder = "Wpisz ISBN książki", @class = "form_imput" } })
+                </div>
+                <div class="form_error">
+                    @Html.ValidationMessageFor(model => model.Book.ISBN)
+                </div>
+            </div>
+
+            <div class="form_verse">
+                @Html.LabelFor(model => model.PublisherName)<span class="form_requared">*</span>
+                <div>
+                    @Html.EditorFor(model => model.PublisherName,
+                        new { htmlAttributes = new { placeholder = "Wpisz nazwę wydawnictwa książki", @class = "form_imput" } })
+                </div>
+                <div class="form_error">
+                    @Html.ValidationMessageFor(model => model.PublisherName)
+                </div>
+            </div>
+
+
+            <div class="form_verse">
+                @Html.LabelFor(model => model.Book.Description)
+                <div>
+                    @Html.TextAreaFor(model => model.Book.Description,
+                        new { placeholder = "Opis książki", @class = "form_imput_text-area" })
+                </div>
+                <div class="form_error">
+                    @Html.ValidationMessageFor(model => model.Book.Description)
+                </div>
+            </div>
+
+            <div class="form_verse">
+                @Html.LabelFor(model => model.Book.ImageFile)
+                <div>
+                    @Html.TextBoxFor(m => m.Book.ImageFile, new { type = "file", accept = ".jpg", @class = "form_imput" })
+                </div>
+                <div class="form_error">
+                    @Html.ValidationMessageFor(model => model.Book.ImageFile)
+                </div>
+            </div>
+
+            <div style="margin-top: 40px">
+                <input type="submit" value="Create" id="submit" />
+            </div>
+        }
+    </div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

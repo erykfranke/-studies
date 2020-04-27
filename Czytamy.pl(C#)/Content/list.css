@@ -1,0 +1,250 @@
+﻿.list_beam {
+    font-size: 25px;
+    font-weight: bold;
+}
+
+
+/*
+    FILTER
+*/
+#filter {
+    width: 360px;
+    float: left;
+}
+
+.filter_element {
+    margin: 20px 5px;
+    font-size: 18px;
+}
+
+    .filter_element ul {
+        list-style: none;
+        padding-left: 2px;
+        margin-top: 10px;
+    }
+
+    .filter_element li {
+        margin-bottom: 7px;
+    }
+
+    .filter_element a:link{
+        color: black;
+        text-decoration: none;
+    }
+
+    .filter_element a:visited {
+        color: black;
+    }
+
+    .filter_element a:hover {
+        color: #FF6700;
+    }
+
+
+.filter_select {
+    float: left;
+    border-left: solid white 1px;
+    border-top: solid white 1px;
+    border-right: solid white 1px;
+    border-bottom: solid lightgray 2px;
+    font-size: 15px;
+    padding: 5px 10px;
+    -webkit-appearance: none;
+    cursor: pointer;
+    width: 50%;
+}
+
+    .filter_select:hover {
+        border-bottom: solid #FF6700 2px;
+    }
+
+    .filter_select:focus {
+        outline: none;
+        border-bottom: solid #FF6700 2px;
+    }
+
+.letter {
+    float: left;
+    padding: 2px;
+}
+
+    .letter a:Link {
+        width: 28px;
+        height: 28px;
+        display: block;
+        background-color: #FF6700;
+        color: white;
+        font-size: 18px;
+        text-decoration: none;
+        text-align: center;
+        display: flex;
+        align-items: center;
+        justify-content: center
+    }
+
+    .letter a:visited {
+        color: white;
+    }
+
+    .letter a:hover {
+        background-color: #555555;
+    }
+
+.date_box {
+    float: left;
+    margin-left: 5px;
+    font-size: 19px;
+    border-bottom: solid 2px lightgray;
+    height: 25px;
+}
+
+#filter_icon {
+    font-size: 15px;
+    color: #FF6700;
+}
+
+.filter_content_list {
+    width: 100%;
+    max-height: 150px;
+    overflow: auto;
+    margin-top: 6px
+}
+
+    .filter_content_list::-webkit-scrollbar {
+        width: 5px;
+    }
+    /* Track */
+    .filter_content_list::-webkit-scrollbar-track {
+        background: #f1f1f1;
+    }
+    /* Handle */
+    .filter_content_list::-webkit-scrollbar-thumb {
+        background: #888;
+    }
+    /* Handle on hover */
+    .filter_content_list::-webkit-scrollbar-thumb:hover {
+        background: #555;
+    }
+
+.filter_check_box {
+    height: 11px;
+    width: 11px;
+    float: left;
+    border: darkgray 1px solid;
+    margin-top: 4px;
+    margin-left: 5px;
+}
+
+
+
+/*
+    LIST
+*/
+
+#list {
+    float: left;
+    width: 680px;
+    margin-left: 30px;
+    margin-right: 30px;
+}
+
+#list_element {
+    float: left;
+    width: 220px;
+    font-size: 18px;
+    margin-bottom: 10px;
+}
+
+    #list_element a:link {
+        color: #597194;
+        text-decoration: none;
+    }
+
+    #list_element a:visited {
+        color: #597194
+    }
+
+    #list_element a:hover {
+        color: #FF6700
+    }
+
+
+/*
+    TAG
+
+*/
+.tag{
+    padding: 4px;
+    float: left;
+}
+
+    .tag:link {
+        color: #597194;
+        text-decoration: none;
+    }
+
+    .tag:visited {
+        color: #597194
+    }
+
+    .tag:hover {
+        color: #FF6700
+    }
+
+/*
+    BOOK_LIST
+*/
+
+    #list ul {
+        list-style: none;
+        font-size: 20px;
+        padding:unset;
+        margin:unset;
+        margin-left: 50px;
+        margin-top: 40px
+    }
+
+    #list li {
+        margin-top: 20px
+    }
+
+#list .rating {
+    color: #C92523;
+    float: left;
+}
+
+#book_list_numberOfOpinions {
+    float: left;
+    padding-right: 10px;
+    padding-left: 10px;
+    margin-left: 40px;
+    margin-right: 40px;
+    margin-top: 22px;
+    border-left: #c5c5c5 1px solid;
+    border-right: #c5c5c5 1px solid;
+    color: #c5c5c5;
+}
+
+
+.pages{
+    text-align:center;
+    font-size: 19px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.page{
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+
+hr.main {
+    border: solid lightgray 1px;
+}
+
+hr.filter {
+    margin-top: 30px;
+    margin-bottom: 30px;
+    border: solid lightgray 0.5px;
+}

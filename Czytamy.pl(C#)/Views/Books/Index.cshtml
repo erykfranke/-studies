@@ -1,0 +1,17 @@
+﻿@model  Czytamy.pl.Models.AdvenceFilterViewModel
+
+@{
+    ViewBag.Title = "Index";
+}
+
+@Html.Partial("AdvenceFilter")
+    <div id="list">
+        <div class="list_beam">
+            KSIĄŻKI [@ViewBag.numberOfBooks]
+            @Html.Partial("IndexAdminButtons", "Books")
+            <hr class="main" />
+        </div>
+        @Html.Partial("BookList", Model.Books)
+        @Html.Partial("PageList")
+    </div>
+

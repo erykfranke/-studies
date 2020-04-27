@@ -1,0 +1,99 @@
+﻿#details_box{
+   background-color: #eaeaea;
+   padding: 20px
+}
+
+#details_image {
+    border: white 15px solid;
+    float: left;
+}
+
+#details_title {
+    background-color: #555555;
+    color: white;
+    font-size: 50px;
+    padding: 30px;
+    width: 694px;
+    margin-top: 20px;
+}
+
+#details_list {
+    float: left;
+    font-size: 22px;
+}
+
+.details_element_list{
+    margin-top: 20px;
+    margin-bottom: 20px;
+    font-size: 20px
+}
+
+#numberBooks {
+    font-size: 22px;
+    padding: 15px;
+}
+
+#description {
+    padding: 20px;
+    font-size: 18px;
+}
+
+.details_submit {
+    font-size: 17px;
+    border: #FF6700 solid 2px;
+    padding: 10px 17px;
+    background-color: white;
+    font-weight: normal;
+    background-color: #eaeaea;
+}
+
+    .details_submit:hover {
+        background-color: #FF6700;
+        color: white;
+    }
+
+#details_book_list{
+    width: 800px;
+    margin-left:auto;
+    margin-right: auto;
+}
+
+    #details_book_list ul {
+        list-style: none;
+        font-size: 20px;
+        padding: unset;
+        margin: unset;
+        margin-left: 50px;
+        margin-top: 40px;
+    }
+
+    #details_book_list li {
+        margin-top: 20px
+    }
+
+    #details_book_list .rating {
+        color: #C92523;
+        float: left;
+    }
+
+.details_list_title {
+    margin-top: 24px;
+    font-size: 28px;
+    margin-left: 30px;
+    margin-right: 30px;
+}
+
+#delete_tag_buttom {
+    border: hidden;
+    background-color: transparent;
+    color: #597194;
+    font-weight: bold;
+}
+
+    #delete_tag_buttom:hover {
+        color: white
+    }
+
+.tag_link:link {
+    color: white;
+}

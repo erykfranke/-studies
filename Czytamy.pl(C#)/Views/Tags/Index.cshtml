@@ -1,0 +1,16 @@
+﻿@model IEnumerable<Czytamy.pl.Models.Tag>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<div class="list_beam">
+    Chmura tagów książek
+    <hr class="main" />
+</div>
+
+@foreach (var item in Model) {
+    <a class="tag" href=@Url.Action("Index", "Books", new {tagsID = item.ID, page = "1"}) style="font-size: @(10 + (2* item.Books.Count()))px">
+        @item.Name
+    </a>
+}

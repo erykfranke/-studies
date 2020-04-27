@@ -1,0 +1,48 @@
+﻿@model Czytamy.pl.Models.Publisher
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<div id="delete_box">
+    <div id="delete_title">
+        <h2>Czy napewno chcesz usunąć tege wydawnictwo ?</h2>
+        <h3 style="color: red">UWAGA! usunięcie wydawnictwa spowoduję równierz usunięcie wszyskich jego książek</h3>
+    </div>
+
+    <img src=@Model.LogoPath id="book_cover" height="350" width="245" />
+
+    <div id="book_details" style="width: 489px">
+        <div id="book_title" style="width: 489px">
+            @Model.Name
+        </div>
+
+        <div id="numberBooks">
+            <i class="demo-icon icon-book" style="color: #FF6700"></i>
+            @Model.Books.Count() książek
+        </div>
+
+        <hr />
+
+        <ul style="font-size: 19px">
+            <li>piszę książki:</li>
+            <li class="clear"></li>
+
+            @if (Model.Web_site != null)
+            {
+                <li>Urodzony: @Model.Web_site</li>
+                <li class="clear"></li>
+            }
+        </ul>
+    </div>
+    <div class="clear"></div>
+
+    @using (Html.BeginForm())
+    {
+        <div style="margin-top: 40px; text-align:center">
+            <input type="submit" value="Usuń" id="submit" />
+            @Html.ActionLink("Anuluj", "Details", "Publishers", new { id = Model.ID },
+                new { @class = "cancel" })
+        </div>
+    }
+</div>

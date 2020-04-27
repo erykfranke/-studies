@@ -1,0 +1,16 @@
+﻿@model IEnumerable<Czytamy.pl.Models.Book>
+@{
+    ViewBag.Title = "Home Page";
+}
+
+<div class="list_beam">
+    Ostatnio wydane
+    <hr class="main" />
+</div>
+
+@foreach (var item in Model)
+{
+    <a href=@Url.Action("Details", "Books", new {id = item.ID})>
+        <img src=@item.CoverPath style="float: left; margin: 10px 5px" width="210" height="298" />
+    </a>
+}

@@ -1,0 +1,8 @@
+﻿@model string
+
+@if (this.User.IsInRole("Admin"))
+{
+    <div style="float:right; margin-top: -3px;">
+        @Html.ActionLink("Dodaj", "Create", Model, new { @class = "opinions_submint"})
+    </div>
+}

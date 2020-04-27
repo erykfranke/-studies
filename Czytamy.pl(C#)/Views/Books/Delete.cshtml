@@ -1,0 +1,77 @@
+﻿@model Czytamy.pl.Models.Book
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+    <div id="delete_box">
+        <div id="delete_title">
+            <h2>Czy napewno chcesz usunąć tą książkę ?</h2>
+        </div>
+
+        <img src=@Model.CoverPath id="book_cover" height="425" width="299" />
+
+        <div id="book_details" style="width: 435px">
+            <div id="book_title" style="width: 435px">
+                @Html.DisplayFor(model => model.Title)
+            </div>
+            <div id="book_author" style="padding-bottom: 5px">
+                @Html.ActionLink(Model.Author.Name + " " + Model.Author.Surname, "Details", "Authors", new { id = Model.Author.ID }, null)
+            </div>
+
+            <hr />
+
+            <ul>
+                @if (Model.Oryginal_title != null)
+                {
+                    <li class="name">Oryginalny tytuł:</li>
+                    <li class="value">@Html.DisplayFor(model => model.Oryginal_title)</li>
+                    <li class="clear"></li>
+                }
+
+                <li class="name">Data wydania:</li>
+                <li class="value">@Html.DisplayFor(model => model.Date_published)</li>
+                <li class="clear"></li>
+
+                @if (Model.Polish_date_published != null)
+                {
+                    <li class="name">Data wyd. pol.:</li>
+                    <li class="value">@Html.DisplayFor(model => model.Polish_date_published)</li>
+                    <li class="clear"></li>
+                }
+
+                <li class="name">Liczba stron:</li>
+                <li class="value">@Html.DisplayFor(model => model.Number_of_pages)</li>
+                <li class="clear"></li>
+
+                <li class="name">Język:</li>
+                <li class="value">@Html.DisplayFor(model => model.Language)</li>
+                <li class="clear"></li>
+
+                <li class="name">ISBN:</li>
+                <li class="value">@Html.DisplayFor(model => model.ISBN)</li>
+                <li class="clear"></li>
+
+                <li class="name">Wydawnictwo:</li>
+                <li class="value">
+                    @Html.ActionLink(Model.Publisher.Name, "Details", "Publishers", new { id = Model.Publisher.ID }, null)
+                </li>
+                <li class="clear"></li>
+
+                <li class="name">Kategoria:</li>
+                <li class="value">@Model.Category</li>
+                <li class="clear"></li>
+            </ul>
+            <div class="clear"></div>
+        </div>
+        <div class="clear"></div>
+
+        @using (Html.BeginForm())
+        {
+            <div style="margin-top: 40px; text-align:center">
+                <input type="submit" value="Usuń" id="submit" />
+                @Html.ActionLink("Anuluj", "Details", "Books" , new { id = Model.ID } ,
+                    new { @class = "cancel"})
+            </div>
+        }
+    </div>

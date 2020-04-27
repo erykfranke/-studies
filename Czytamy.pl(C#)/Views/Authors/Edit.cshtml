@@ -1,0 +1,100 @@
+﻿@model Czytamy.pl.Models.Author
+
+@{
+    ViewBag.Title = "Create";
+}
+
+    <div id="form_box">
+        <h1>Edycja danych autora</h1>
+        @using (Html.BeginForm("Edit", "Authors", FormMethod.Post, new { enctype = "multipart/form-data" }))
+        {
+            @Html.AntiForgeryToken()
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            @Html.HiddenFor(model => model.PhotoPath, new { value = Model.PhotoPath })
+
+            <div class="form_verse">
+                @Html.LabelFor(model => model.Name)<span class="form_requared">*</span>
+                <div>
+                    @Html.EditorFor(model => model.Name,
+                        new { htmlAttributes = new { placeholder = "Wpisz imię autora", @class = "form_imput" } })
+                </div>
+                <div class="form_error">
+                    @Html.ValidationMessageFor(model => model.Name)
+                </div>
+            </div>
+
+            <div class="form_verse">
+                @Html.LabelFor(model => model.Surname)<span class="form_requared">*</span>
+                <div>
+                    @Html.EditorFor(model => model.Surname,
+                        new { htmlAttributes = new { placeholder = "Wpisz nazwisko autora", @class = "form_imput" } })
+                </div>
+                <div class="form_error">
+                    @Html.ValidationMessageFor(model => model.Surname)
+                </div>
+            </div>
+
+            <div class="form_verse">
+                @Html.LabelFor(model => model.Birth_date)
+                <div>
+                    @Html.EditorFor(model => model.Birth_date,
+                        new { htmlAttributes = new { @class = "form_imput" } })
+                </div>
+                <div class="form_error">
+                    @Html.ValidationMessageFor(model => model.Birth_date)
+                </div>
+            </div>
+
+            <div class="form_verse">
+                @Html.LabelFor(model => model.Death_date)
+                <div>
+                    @Html.EditorFor(model => model.Death_date,
+                        new { htmlAttributes = new { @class = "form_imput" } })
+                </div>
+                <div class="form_error">
+                    @Html.ValidationMessageFor(model => model.Death_date)
+                </div>
+            </div>
+
+            <div class="form_verse">
+                @Html.LabelFor(model => model.Web_site)
+                <div>
+                    @Html.EditorFor(model => model.Web_site,
+                        new { htmlAttributes = new { placeholder = "Wpisz strone internetową autora", @class = "form_imput" } })
+                </div>
+                <div class="form_error">
+                    @Html.ValidationMessageFor(model => model.Web_site)
+                </div>
+            </div>
+
+            <div class="form_verse">
+                @Html.LabelFor(model => model.Description)
+                <div>
+                    @Html.TextAreaFor(model => model.Description,
+                        new { placeholder = "Opis autora", @class = "form_imput_text-area" })
+                </div>
+                <div class="form_error">
+                    @Html.ValidationMessageFor(model => model.Description)
+                </div>
+            </div>
+
+            <div class="form_verse">
+                @Html.LabelFor(model => model.ImageFile)
+                <div>
+                    @Html.TextBoxFor(m => m.ImageFile, new { type = "file", accept = ".jpg", @class = "form_imput" })
+                </div>
+                <div class="form_error">
+                    @Html.ValidationMessageFor(model => model.ImageFile)
+                </div>
+            </div>
+
+            <div style="margin-top: 40px">
+                <input type="submit" value="Zapisz" id="submit" />
+                @Html.ActionLink("Anuluj", "Details", "Authors", new { id = Model.ID }, new { @class = "cancel" })
+            </div>
+        }
+    </div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

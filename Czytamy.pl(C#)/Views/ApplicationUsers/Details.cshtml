@@ -1,0 +1,76 @@
+﻿@model Czytamy.pl.Models.ApplicationUser
+
+<div id="UserBox">
+    <h1>
+        @if (ViewBag.UserAccount == true)
+        {
+           <text>Witaj @Model.UserName</text>
+        }
+        else
+        {
+            <text>@Model.UserName</text>
+        }
+    </h1>
+
+    <hr style=" border: solid 1px gray"/>
+    
+    <div id="user_left_row">
+        <img src=@Model.PhotoPath width="100" height="100" style="border-radius: 50%;padding-bottom: 10px" />
+        @if (Model.Place != null)
+        {
+            <div class="info">@Model.Place.ToUpperInvariant()</div>
+        }
+        @if (Model.Gender != null)
+        {
+            <div class="info">@Model.Gender</div>
+        }
+        
+        <div class="info" style="margin-top: 20px"> STATUS </div>
+        <div class="info">
+            @if (ViewBag.AdminRole == true)
+            {
+                <text>Administrator</text>
+            }
+            else
+            {
+                <text>Czytelnik</text>
+            }
+        </div>
+
+    </div>
+
+    <div id="user_right_row">
+        <div style="float: left">Zrecenzowanych książek</div>
+        <div id="user_opinion_count" style="float: left; margin-top: -3px">@Model.Opinions.Count()</div>
+        <div class="clear"></div>
+
+        <hr style="margin: 20px 0">
+
+        <div id="user_description">
+            @if (Model.Description == null)
+            {
+                if (ViewBag.UserAccount == true)
+                {
+                    <text>
+                        Aktualnie nie posiadasz opisu. Dodaj opis aby inni użytkownicy
+                        mogli Cię lepiej poznać.
+                    </text>
+                }
+                else
+                {
+                    <text>Użytkownik nie posiada opisu konta</text>
+                }
+            }
+            else
+            {
+                @Model.Description
+            }
+        </div>
+        @if (ViewBag.UserAccount == true)
+        {
+            @Html.ActionLink("Uzupełnij dane", "Edit", "ApplicationUsers", new { id = Model.Id }, new { @class = "user_edit" })
+            @Html.ActionLink("Zmień hasło", "ChangePassword", "Manage", null, new { @class = "user_edit", style="margin-right: 10px"} )
+        }
+    </div>
+    <div class="clear"></div>
+</div>
