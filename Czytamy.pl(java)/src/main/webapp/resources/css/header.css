@@ -1,0 +1,81 @@
+<!--     HEADER      -->
+
+body{
+    font-family: 'Lato', sans-serif;
+}
+header{
+    margin-left: auto;
+    margin-right: auto;
+}
+#H_logo{
+    float: left;
+    width: 500px;
+    color: #FF6700;
+    font-size: 60px;
+    padding-left: 20px;
+    padding-right: 20px;
+    padding-bottom: 10px;
+    margin-left: 20px;
+}
+#H_logo a:link{
+    color: #FF6700;
+    text-decoration: none;
+}
+#H_logo a:visited{
+    color: #FF6700;
+}
+#H_logo a:hover{
+    color: #FF6700;
+}
+#UserPanel{
+    background-color: #FF6700;
+    padding: 6px 25px;
+    color: white;
+    text-align: right;
+    font-size: 17px;
+}
+#UserPanel a:link{
+    color: white;
+    text-decoration: none;
+}
+#UserPanel a:visited{
+    color: white;
+}
+#UserPanel a:hover{
+    color: #ffc69f;
+}
+#H_search{
+    padding: 8px;
+    font-size: 12px;
+    width: 350px;
+    height: 35px;
+    border-left: #FF6700;
+    border-top: none;
+    border-right: none;
+    border-bottom-color: #555555;
+    border-bottom-width: thin;
+}
+#navigateBeam{
+    background-color: #eaeaea;
+    width: -moz-max-content;
+}
+.beam{
+    width: 1100px;
+    margin-left: auto;
+    margin-right: auto;
+}
+.navOption{
+    float: left;
+    padding: 12px;
+    font-size: 20px;
+}
+.navOption a:link{
+    color: #555555;
+    text-decoration: none;
+}
+.navOption a:visited{
+    color: #555555;
+}
+.navOption a:hover{
+    color: #FF6700;
+}

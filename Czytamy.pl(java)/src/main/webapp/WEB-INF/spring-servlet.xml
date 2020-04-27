@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:mvc="http://www.springframework.org/schema/mvc"
+       xsi:schemaLocation="
+        http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/context
+        http://www.springframework.org/schema/context/spring-context.xsd
+        http://www.springframework.org/schema/mvc
+        http://www.springframework.org/schema/mvc/spring-mvc.xsd">
+    <context:component-scan base-package="pl.czytamy.controllers"/>
+
+    <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+        <property name="prefix" value="/WEB-INF/view/"/>
+        <property name="suffix" value=".jsp"/>
+    </bean>
+
+    <bean id="ds" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+        <property name="driverClassName" value="com.mysql.jdbc.Driver"/>
+        <property name="url" value="jdbc:mysql://localhost:3306/czytamy.pl"/>
+        <property name="username" value="root"/>
+        <property name="password" value=""/>
+    </bean>
+
+    <mvc:resources mapping="/resources/**" location="/resources/"/>
+    <mvc:annotation-driven />
+
+
+    <bean id="njt" class="org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate">
+        <constructor-arg type="javax.sql.DataSource" ref="ds"/>
+    </bean>
+
+    <bean id="jt" class="org.springframework.jdbc.core.JdbcTemplate">
+        <constructor-arg type="javax.sql.DataSource" ref="ds"/>
+    </bean>
+
+    <bean id="author_dao" class="pl.czytamy.dao.AuthorDAO">
+        <property name="template" ref="jt"/>
+    </bean>
+
+    <bean id="book_dao" class="pl.czytamy.dao.BookDAO">
+        <property name="template" ref="jt"/>
+    </bean>
+
+    <bean id="booksTags_dao" class="pl.czytamy.dao.BooksTagsDAO">
+        <property name="template" ref="jt"/>
+    </bean>
+
+    <bean id="opinion_dao" class="pl.czytamy.dao.OpinionDAO">
+        <property name="template" ref="jt"/>
+    </bean>
+
+    <bean id="publisher_dao" class="pl.czytamy.dao.PublisherDAO">
+        <property name="template" ref="jt"/>
+    </bean>
+
+    <bean id="tag_dao" class="pl.czytamy.dao.TagDAO">
+        <property name="template" ref="jt"/>
+    </bean>
+
+    <bean id="user_dao" class="pl.czytamy.dao.UserDAO">
+        <property name="template" ref="jt"/>
+    </bean>
+
+    <bean id="book_element_list" class="pl.czytamy.dao.BookElementListDAO">
+        <property name="jdbcTemplate" ref="njt"/>
+    </bean>
+
+    <bean id="book_photo_list" class="pl.czytamy.dao.BookPhotoListDAO">
+        <property name="template" ref="jt"/>
+    </bean>
+
+    <bean id="edit_user" class="pl.czytamy.dto.editUserDTO">
+    </bean>
+
+    <bean id="multipartResolver"  class="org.springframework.web.multipart.commons.CommonsMultipartResolver"/>
+
+</beans>
